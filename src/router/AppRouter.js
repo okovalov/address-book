@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import UsersListPage from '../pages/UsersListPage';
-import UserDetailsPage from '../pages/UserDetailsPage';
+import Loader from '../components/common/Loader';
+
+const UsersListPage = lazy(() => import('../pages/UsersListPage'));
+const UserDetailsPage = lazy(() => import('../pages/UserDetailsPage'));
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" exact={true} component={UsersListPage} />
-        <Route path="/user/:userId" exact={true} component={UserDetailsPage} />
-        <Route render={() => <div>Ops...</div>} />
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path="/" exact={true} component={UsersListPage} />
+          <Route
+            path="/user/:userId"
+            exact={true}
+            component={UserDetailsPage}
+          />
+          <Route render={() => <div>Ops...</div>} />
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 };
