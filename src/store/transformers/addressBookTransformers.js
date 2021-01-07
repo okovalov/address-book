@@ -21,4 +21,11 @@ export const transformUserList = (response) => {
   });
 };
 
-export const transformUserProfile = (userDetailsReponse) => userDetailsReponse;
+export const transformUserProfile = (userData) => {
+  const firstName = _get(userData, 'firstName', '');
+  const lastName = _get(userData, 'lastName', '');
+
+  const fullName = `${firstName} ${lastName}`;
+
+  return { ...userData, fullName };
+};

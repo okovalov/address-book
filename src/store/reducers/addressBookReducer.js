@@ -26,6 +26,26 @@ const addressBookReducer = (state = addressBookInitialState, action) => {
         userList: addressBookInitialState.userList,
         error: { ...action.error },
       };
+    case types.LOAD_USER_START:
+      return {
+        ...state,
+        selectedUserDetails: addressBookInitialState.selectedUserDetails,
+        error: addressBookInitialState.error,
+        isLoading: true,
+      };
+    case types.LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        selectedUserDetails: action.userData,
+        isLoading: false,
+      };
+    case types.LOAD_USER_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        selectedUserDetails: addressBookInitialState.selectedUserDetails,
+        error: { ...action.error },
+      };
     default:
       return state;
   }

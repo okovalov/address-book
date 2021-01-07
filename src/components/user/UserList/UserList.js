@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import UserListItem from '../UserListItem';
+
+const userListItemMapper = (userData) => {
+  const { userId } = userData;
+
+  return <UserListItem key={userId} userData={userData} />;
+};
 
 const UsersList = (props) => {
   const { userDataList } = props;
 
-  console.log('userDataList', userDataList);
+  const listItems = userDataList.map(userListItemMapper);
 
-  return <div>Your user list </div>;
+  return <ul>{listItems}</ul>;
 };
 
 UsersList.propTypes = {

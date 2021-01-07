@@ -3,6 +3,7 @@ const addressBook = {
   userList: [],
   isListLoaded: false,
   error: null,
+  selectedUserDetails: {},
 };
 
 export default addressBook;
