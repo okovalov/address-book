@@ -13,7 +13,23 @@ const UsersList = (props) => {
 
   const listItems = userDataList.map(userListItemMapper);
 
-  return <ul>{listItems}</ul>;
+  const headerClasses =
+    'has-text-weight-bold is-family-secondary is-size-6 has-background-grey-dark has-text-gold';
+
+  return (
+    <div className="table-container">
+      <table className="table  is-striped is-hoverable is-fullwidth  ">
+        <thead>
+          <tr>
+            <th className={headerClasses}>First Name</th>
+            <th className={headerClasses}>Last Name</th>
+            <th className={headerClasses}>Email</th>
+          </tr>
+        </thead>
+        <tbody>{listItems}</tbody>
+      </table>
+    </div>
+  );
 };
 
 UsersList.propTypes = {

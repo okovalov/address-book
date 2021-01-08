@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { API_URL, LIMIT_PARAMETER_NAME } from '../constants/api';
 
-export const loadUserList = async (limit = 10) => {
+export const loadUserList = async (limit = 50) => {
   const axiosParams = { params: { [LIMIT_PARAMETER_NAME]: limit } };
 
   let response;

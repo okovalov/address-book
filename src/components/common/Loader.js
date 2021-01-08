@@ -2,11 +2,13 @@ import React from 'react';
 import classnames from 'classnames';
 import styled from 'styled-components';
 
-export default React.memo(styled(({ className }) => (
-  <div className={classnames('loader', className)}>
-    <span className="loader__ball loader__ball--1" />
-    <span className="loader__ball loader__ball--2" />
-    <span className="loader__ball loader__ball--3" />
+const styledLoader = styled(({ className }) => (
+  <div className={classnames('loader-container', className)}>
+    <div>
+      <span className="loader__ball loader__ball--1" />
+      <span className="loader__ball loader__ball--2" />
+      <span className="loader__ball loader__ball--3" />
+    </div>
   </div>
 ))`
   display: flex;
@@ -22,7 +24,7 @@ export default React.memo(styled(({ className }) => (
     height: 0.75rem;
     width: 0.75rem;
     border-radius: 0.375rem;
-    background: #06c;
+    background: #f3d1a2;
 
     &.loader__ball--1,
     &.loader__ball--2,
@@ -51,4 +53,6 @@ export default React.memo(styled(({ className }) => (
       }
     }
   }
-`);
+`;
+
+export default React.memo(styledLoader);

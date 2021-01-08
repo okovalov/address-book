@@ -9,13 +9,11 @@ const UserListItem = (props) => {
   const { userId, email, firstName, lastName } = userData;
 
   return (
-    <li onClick={() => history.push(`/user/${userId}`)}>
-      <div>
-        <span>{firstName}</span>
-        <span>{lastName}</span>
-        <span>{email}</span>
-      </div>
-    </li>
+    <tr onClick={() => history.push(`/user/${userId}`)}>
+      <td>{firstName}</td>
+      <td>{lastName}</td>
+      <td>{email}</td>
+    </tr>
   );
 };
 
