@@ -7,14 +7,18 @@ const MainHeader = () => {
         <div className="container">
           <div className="header-content-container">
             <div className="header-icon-container">
-              <span className="icon-text">
-                <span className="icon has-text-gold">
-                  <i className="fas fa-home fa-3x"></i>
+              <a href="/">
+                <span className="icon-text">
+                  <span className="icon has-text-gold">
+                    <i className="fas fa-home fa-3x"></i>
+                  </span>
                 </span>
-              </span>
+              </a>
             </div>
             <div className="header-title-container ">
-              <span className="has-text-gold is-size-4 ">Address Book</span>
+              <span className="has-text-gold is-size-4 is-uppercase has-text-weight-bold">
+                Address Book
+              </span>
             </div>
           </div>
         </div>

@@ -6,13 +6,16 @@ const UserListItem = (props) => {
   let history = useHistory();
 
   const { userData } = props;
-  const { userId, email, firstName, lastName } = userData;
+  const { userId, email, firstName, lastName, phoneNumber } = userData;
 
   return (
     <tr onClick={() => history.push(`/user/${userId}`)}>
       <td>{firstName}</td>
       <td>{lastName}</td>
-      <td>{email}</td>
+      <td>{phoneNumber}</td>
+      <td>
+        <a href={`mailto:${email}`}>{email}</a>
+      </td>
     </tr>
   );
 };

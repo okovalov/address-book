@@ -1,4 +1,5 @@
 import _get from 'lodash/get';
+import { getSafeDateString } from '../../services/utils';
 
 export const transformUserList = (response) => {
   const userList = _get(response, 'data.results', []);
@@ -11,12 +12,19 @@ export const transformUserList = (response) => {
     const userIdType = _get(userInfo, 'id.name', '');
     const userIdValue = _get(userInfo, 'id.value', '');
 
+    const registrationDateString = _get(userInfo, 'registered.date', '');
+    const safeDateString = getSafeDateString(registrationDateString);
+
+    const picture = _get(userInfo, 'picture', {});
+
     return {
       email,
       userId: `${userIdType || 'email'}-${userIdValue || email}`,
       firstName,
       lastName,
       phoneNumber,
+      registrationDate: safeDateString,
+      picture,
     };
   });
 };

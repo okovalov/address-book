@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import UserDetails from '../../components/user/UserDetails';
+import MainHeader from '../../layout/headers/MainHeader';
+import Breadcrumbs from '../../layout/headers/Breadcrumbs';
+import MainFooter from '../../layout/footers/MainFooter';
+import '../../styles/UserDetailsPage.scss';
 
 const UserDetailsPage = (props) => {
   const {
@@ -16,10 +19,16 @@ const UserDetailsPage = (props) => {
   }, [userId, loadUserById]);
 
   return (
-    <div>
-      <UserDetails />
-      <Link to="/">Navigate Back</Link>
-    </div>
+    <>
+      <MainHeader />
+      <section className="section details-section">
+        <div className="container details-container">
+          <Breadcrumbs />
+          <UserDetails />
+        </div>
+      </section>
+      <MainFooter />
+    </>
   );
 };
 

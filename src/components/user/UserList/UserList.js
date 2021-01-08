@@ -23,6 +23,7 @@ const UsersList = (props) => {
           <tr>
             <th className={headerClasses}>First Name</th>
             <th className={headerClasses}>Last Name</th>
+            <th className={headerClasses}>Phone</th>
             <th className={headerClasses}>Email</th>
           </tr>
         </thead>
