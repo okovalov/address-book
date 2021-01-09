@@ -1,0 +1,17 @@
+@import 'common.scss';
+
+.section {
+  &.details-section {
+    padding-top: 0;
+    .container {
+      &.details-container {
+        div.card {
+          box-shadow: 0 4px 4px $brand-dark;
+          border-radius: 5px;
+          overflow-y: scroll;
+          max-height: 50vh;
+        }
+      }
+    }
+  }
+}
