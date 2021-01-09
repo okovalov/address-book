@@ -1,6 +1,7 @@
 import {
   transformUserList,
   transformUserProfile,
+  transformUserAddress,
 } from './addressBookTransformers';
 
 const userEmail = 'a@test.ba';
@@ -13,6 +14,17 @@ const registrationDate = '2007-02-21T02:23:54.244Z';
 const safeDateString = 'Tue Feb 20 2007';
 
 const picture = { a: 'b' };
+
+const defaultFullAddressInfo = {
+  city: '',
+  country: '',
+  fullAddressInfo: '',
+  fullStreetInfo: '',
+  postcode: '',
+  state: '',
+  streetName: '',
+  streetNumber: '',
+};
 
 describe('addressBookTransformers', () => {
   describe('transformUserList', () => {
@@ -49,6 +61,7 @@ describe('addressBookTransformers', () => {
           phoneNumber,
           registrationDate: safeDateString,
           picture,
+          addressInfo: defaultFullAddressInfo,
         },
       ];
 
@@ -87,6 +100,7 @@ describe('addressBookTransformers', () => {
           phoneNumber,
           registrationDate: '',
           picture,
+          addressInfo: defaultFullAddressInfo,
         },
       ];
 
@@ -124,6 +138,7 @@ describe('addressBookTransformers', () => {
           phoneNumber,
           registrationDate: safeDateString,
           picture,
+          addressInfo: defaultFullAddressInfo,
         },
       ];
 
@@ -164,6 +179,7 @@ describe('addressBookTransformers', () => {
           phoneNumber,
           registrationDate: safeDateString,
           picture: {},
+          addressInfo: defaultFullAddressInfo,
         },
       ];
 
@@ -205,6 +221,76 @@ describe('addressBookTransformers', () => {
       };
 
       const formattedResponse = transformUserProfile();
+
+      expect(formattedResponse).toEqual(expectedFormattedResponse);
+    });
+  });
+
+  describe('transformUserAddress', () => {
+    it('returns default data when no input is given', () => {
+      const expectedFormattedResponse = {
+        city: '',
+        country: '',
+        fullAddressInfo: '',
+        fullStreetInfo: '',
+        postcode: '',
+        state: '',
+        streetName: '',
+        streetNumber: '',
+      };
+
+      const formattedResponse = transformUserAddress();
+
+      expect(formattedResponse).toEqual(expectedFormattedResponse);
+    });
+
+    it('returns proper full street info', () => {
+      const response = {
+        street: {
+          number: 1,
+          name: 'main st',
+        },
+      };
+
+      const expectedFormattedResponse = {
+        country: '',
+        city: '',
+        fullAddressInfo: 'main st 1',
+        fullStreetInfo: 'main st 1',
+        postcode: '',
+        state: '',
+        streetName: 'main st',
+        streetNumber: 1,
+      };
+
+      const formattedResponse = transformUserAddress(response);
+
+      expect(formattedResponse).toEqual(expectedFormattedResponse);
+    });
+
+    it('returns proper full address info', () => {
+      const response = {
+        country: 'CA',
+        state: 'ON',
+        postcode: 'K6R3D7',
+        street: {
+          number: 1,
+          name: 'main st',
+        },
+      };
+
+      const expectedFormattedResponse = {
+        country: 'CA',
+        city: '',
+        fullAddressInfo: 'main st 1, ON, K6R3D7, CA',
+        fullStreetInfo: 'main st 1',
+        postcode: 'K6R3D7',
+        state: 'ON',
+        streetName: 'main st',
+        streetNumber: 1,
+      };
+
+      const formattedResponse = transformUserAddress(response);
 
       expect(formattedResponse).toEqual(expectedFormattedResponse);
     });
