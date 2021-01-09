@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import UserDetails from '../../components/user/UserDetails';
-import MainHeader from '../../layout/headers/MainHeader';
 import Breadcrumbs from '../../layout/headers/Breadcrumbs';
-import MainFooter from '../../layout/footers/MainFooter';
+import WithLayout from '../../components/hoc/WithLayout';
+
 import '../../styles/UserDetailsPage.scss';
 
 const UserDetailsPage = (props) => {
@@ -19,16 +19,13 @@ const UserDetailsPage = (props) => {
   }, [userId, loadUserById]);
 
   return (
-    <>
-      <MainHeader />
-      <section className="section details-section">
-        <div className="container details-container">
-          <Breadcrumbs />
-          <UserDetails />
-        </div>
-      </section>
-      <MainFooter />
-    </>
+    <WithLayout
+      sectionClass={'details-section'}
+      containerClass={'details-container'}
+    >
+      <Breadcrumbs />
+      <UserDetails />
+    </WithLayout>
   );
 };
 
