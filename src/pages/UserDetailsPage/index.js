@@ -1,6 +1,6 @@
-import UsersDetailsPage from './UserDetailsPage';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import UsersDetailsPage from './UserDetailsPage';
 
 import { loadUserById } from '../../store/actions/addressBookActions';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
-import UserListItem from './UserListItem';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import UserListItem from './UserListItem';
 
 let userData;
 

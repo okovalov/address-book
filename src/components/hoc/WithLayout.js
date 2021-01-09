@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MainHeader from '../../layout/headers/MainHeader';
 import MainFooter from '../../layout/footers/MainFooter';
-import PropTypes from 'prop-types';
 
 const WithLayout = ({ children, sectionClass = '', containerClass = '' }) => {
   return (

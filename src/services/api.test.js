@@ -1,9 +1,9 @@
-import { loadUserList } from './api';
-
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import { loadUserList } from './api';
 
 const myResults = [
   {
