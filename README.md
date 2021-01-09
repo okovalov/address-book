@@ -8,13 +8,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### General
 
-Application is implemented using functional components approach, with React Hooks and Higher Order Components.
+Application is implemented using functional components approach, with React Hooks and Higher Order Components for code reusability and abstraction purposes.
 
 Routing is controlled by [React Router](https://reactrouter.com) with a designated **AppRouter** component.
 
-For UI and styling was used [Bulma CSS](https://bulma.io) framework and **SCSS** preprocessor. One component also uses [styled-components](https://styled-components.com).
+Application uses **code splitting** and all the routes components in the router, are lazy loaded for better performance.
 
-Network calls are made with **axios**, with all the logic is placed into `services\api.js`, this allows to quickly swap the data provider with another data fetching service and data transformer, if that is needed.
+For UI and styling was used [Bulma CSS](https://bulma.io) framework and **SCSS** preprocessor, and therefore the application is fully responsive. One component also uses [styled-components](https://styled-components.com).
+
+Network calls are made with **axios**, with all the logic placed into `services\api.js`. This approach allows quickly swap data provider with another data fetching service and data transformer, without any changed on the **presentation** layer.
 
 ### State Management
 
@@ -29,12 +31,12 @@ There are two middlewares added to the store:
 
 ### Components
 
-Where applicable, component is consist of two parts:
+Where applicable, each component consists of two parts:
 
 - container
 - data manager
 
-So, the component looks smth like:
+So, a typical component looks smth like:
 
 ```language
 components\
@@ -44,13 +46,13 @@ components\
       UserList.js
 ```
 
-The **container** does not interact with **redux** on its own, and instead it simply consumes the **props** coming from the **data manager**.
+The **container** does not interact with **redux** on its own, and instead it simply consumes **props** coming from the **data manager**.
 
 This approach allows significantly simplify testing process by rendering the **container** from a test suit and passing there props manually.
 
 Also, this allows to eliminate any **"props chaining"**, so, only the component what needs a particular data from the global state, is getting it from the **store** on its own (using **data manager**), and not from the parent component.
 
-If component does not have any interaction with the **store**, it exist in a **container** only, i.e.
+If component does not have any interaction with the **store**, it exist in a **container** form only, i.e.
 
 ```language
 components\
@@ -59,6 +61,8 @@ components\
 ```
 
 Components are organized into several categories, like **common**, **hoc** and business logic related, with more detailed nesting inside, like `user\UserDetails`, `user\UserList` etc.
+
+All the components with **props** use [PropTypes](https://www.npmjs.com/package/prop-types) for **props** validation purposes.
 
 Layout is extracted into its own directory in the **src** tree, as well as **pages**, since those are rather **presentation** related entites than components, however, functional wise they all are functional components.
 
@@ -74,6 +78,27 @@ It leverages a standardized Service Worker API that is designed to intercept req
 
 Tests are placed on the same level with the components (or files being tested), which allows simplify **import** statements, and on a first glance see which files have tests and which do not have them yet.
 
+### Next In The Implementation
+
+Although **useState** is, perhaps, the most commonly used **hook**, this application, due to its extrime simplicity, does not use that hook.
+
+For the next step though, i.e. adding **Search Functionality**, there would be definitely use of **useState** on the **UserList** page for internal state management.
+
+Also, having **Search** would naturally lead to extracting data loading/searching functionalty into a custom hook, i.e. _useSearchResults_ which would return a current search result data set with a function for executing a new data load process.
+
+```js
+const [userList, runSearch] = useSearchResults(searchQuery);
+```
+
+This _useSearchResults_ hook would be using **useEffect** React Hook and **loadUserList** redux action creator for data fetching and, then, returning it to the component.
+
+A few another very next steps to implement, might be adding:
+
+- result set pagination
+- define result set size
+- ability to add/remove columns to display
+- ability to choose a theme for the application
+
 ## Available Scripts
 
 **Note: Please make sure that you have `yarn` installed prior to running any scipts.**
@@ -82,15 +107,15 @@ A very first step is dependecies installation. For that, in the project director
 
 ### `yarn`
 
-In the project directory, you can run:
+To start the application, in the project directory (in your terminal), you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
+That runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You will also see any lint errors in the console, however you can trigger linting manually, by executing next command.
 
 ### `yarn lint`
 
