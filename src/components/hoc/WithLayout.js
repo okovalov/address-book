@@ -16,7 +16,7 @@ const WithLayout = ({ children, sectionClass = '', containerClass = '' }) => {
 };
 
 WithLayout.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   sectionClass: PropTypes.string,
   containerClass: PropTypes.string,
 };
