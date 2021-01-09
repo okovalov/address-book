@@ -64,6 +64,8 @@ Components are organized into several categories, like **common**, **hoc** and b
 
 All the components with **props** use [PropTypes](https://www.npmjs.com/package/prop-types) for **props** validation purposes.
 
+Also, for simplifying the process of getting value out of the objects, and reducing boilerplate code, [Lodash](https://lodash.com/docs/4.17.15) is being used. Its **\_.get** method allows to safely get the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place. It is critical to use it in places where there is no full control on data structure, i.e. responses from the network calls and so on.
+
 Layout is extracted into its own directory in the **src** tree, as well as **pages**, since those are rather **presentation** related entites than components, however, functional wise they all are functional components.
 
 ### Testing

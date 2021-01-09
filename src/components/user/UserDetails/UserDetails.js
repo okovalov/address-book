@@ -10,10 +10,12 @@ const UserDetails = (props) => {
     email,
     phoneNumber,
     registrationDate,
+    addressInfo = {},
     picture = {},
   } = userDetails;
 
-  const { large } = picture;
+  const { large = '' } = picture;
+  const { fullAddressInfo = '' } = addressInfo;
 
   return (
     <div className="card">
@@ -42,18 +44,13 @@ const UserDetails = (props) => {
             suscipit.
           </p>
           <p>
-            Donec faucibus ultricies nisi, ac congue nunc pellentesque sit amet.
-            Nullam lacinia tellus nisl, ut consectetur neque pellentesque sit
-            amet. In nec accumsan urna. Etiam finibus consectetur nibh quis
-            aliquet.
+            <span className="has-text-weight-semibold">Full address:</span>{' '}
+            <span>{fullAddressInfo}</span>
           </p>
-
-          <div>
-            <p>
-              <span className="has-text-weight-semibold">Joined:</span>{' '}
-              <span>{registrationDate}</span>
-            </p>
-          </div>
+          <p>
+            <span className="has-text-weight-semibold">Registered:</span>{' '}
+            <span>{registrationDate}</span>
+          </p>
         </div>
       </div>
     </div>

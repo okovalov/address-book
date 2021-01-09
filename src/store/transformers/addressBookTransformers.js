@@ -1,6 +1,34 @@
 import _get from 'lodash/get';
 import { getSafeDateString } from '../../services/utils';
 
+export const transformUserAddress = (locationInfo) => {
+  const country = _get(locationInfo, 'country', '');
+  const state = _get(locationInfo, 'state', '');
+  const city = _get(locationInfo, 'city', '');
+  const postcode = _get(locationInfo, 'postcode', '');
+
+  const street = _get(locationInfo, 'street', {});
+  const streetNumber = _get(street, 'number', '');
+  const streetName = _get(street, 'name', '');
+  const streetContainer = [streetName, streetNumber];
+  const fullStreetInfo = streetContainer.join(' ').trim();
+
+  const addressContainer = [fullStreetInfo, city, state, postcode, country];
+
+  const fullAddressInfo = addressContainer.filter(Boolean).join(', ');
+
+  return {
+    country,
+    state,
+    city,
+    postcode,
+    streetNumber,
+    streetName,
+    fullStreetInfo,
+    fullAddressInfo,
+  };
+};
+
 export const transformUserList = (response) => {
   const userList = _get(response, 'data.results', []);
 
@@ -17,6 +45,10 @@ export const transformUserList = (response) => {
 
     const picture = _get(userInfo, 'picture', {});
 
+    const locationInfo = _get(userInfo, 'location', {});
+
+    const addressInfo = transformUserAddress(locationInfo);
+
     return {
       email,
       userId: `${userIdType || 'email'}-${userIdValue || email}`,
@@ -25,6 +57,7 @@ export const transformUserList = (response) => {
       phoneNumber,
       registrationDate: safeDateString,
       picture,
+      addressInfo,
     };
   });
 };
