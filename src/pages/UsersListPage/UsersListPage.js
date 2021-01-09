@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import UserList from '../../components/user/UserList';
 import WithLayout from '../../components/hoc/WithLayout';
 import withLoader from '../../components/hoc/withLoader';
+
 import '../../styles/UserListPage.scss';
 
 const UsersListPage = (props) => {

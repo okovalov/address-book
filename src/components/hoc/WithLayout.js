@@ -16,7 +16,7 @@ const WithLayout = ({ children, sectionClass = '', containerClass = '' }) => {
 };
 
 WithLayout.propTypes = {
-  children: PropTypes.bool,
+  children: PropTypes.object,
   sectionClass: PropTypes.string,
   containerClass: PropTypes.string,
 };

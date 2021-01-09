@@ -18,35 +18,37 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test('renders a list item with given props', () => {
-  render(
-    <table>
-      <tbody>
-        <UserListItem userData={userData} />
-      </tbody>
-    </table>,
-  );
-
-  const linkElement = screen.getByText(/[userFirstName]/i);
-
-  expect(linkElement).toBeInTheDocument();
-});
-
-test('calling the user details route with proper user id upon click on the row', () => {
-  const history = createMemoryHistory();
-  const pushSpy = jest.spyOn(history, 'push');
-
-  const { getByText } = render(
-    <Router history={history}>
+describe('UserListItem component', () => {
+  it('renders a list item with given props', () => {
+    render(
       <table>
         <tbody>
           <UserListItem userData={userData} />
         </tbody>
-      </table>
-    </Router>,
-  );
+      </table>,
+    );
 
-  fireEvent.click(getByText(`${userFirstName}`));
+    const linkElement = screen.getByText(/[userFirstName]/i);
 
-  expect(pushSpy).toHaveBeenCalledWith(`/user/${userId}`);
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  it('calls the user details route with proper user id upon click on the row', () => {
+    const history = createMemoryHistory();
+    const pushSpy = jest.spyOn(history, 'push');
+
+    const { getByText } = render(
+      <Router history={history}>
+        <table>
+          <tbody>
+            <UserListItem userData={userData} />
+          </tbody>
+        </table>
+      </Router>,
+    );
+
+    fireEvent.click(getByText(`${userFirstName}`));
+
+    expect(pushSpy).toHaveBeenCalledWith(`/user/${userId}`);
+  });
 });

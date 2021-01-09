@@ -21,12 +21,14 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test('renders user details page', () => {
-  render(<UserDetails userDetails={userDetails} />);
+describe('UserDetails component', () => {
+  it('renders user details page', () => {
+    render(<UserDetails userDetails={userDetails} />);
 
-  const userNameElement = screen.getByText(`${fullName}`);
-  const userPhoneElement = screen.getByText(`Phone: ${phoneNumber}`);
+    const userNameElement = screen.getByText(`${fullName}`);
+    const userPhoneElement = screen.getByText(`Phone: ${phoneNumber}`);
 
-  expect(userNameElement).toBeInTheDocument();
-  expect(userPhoneElement).toBeInTheDocument();
+    expect(userNameElement).toBeInTheDocument();
+    expect(userPhoneElement).toBeInTheDocument();
+  });
 });

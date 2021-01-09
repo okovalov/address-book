@@ -28,12 +28,14 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test('renders a full list with both items', () => {
-  render(<UserList userDataList={userDataList} />);
+describe('UserList component', () => {
+  it('renders a full list with both items', () => {
+    render(<UserList userDataList={userDataList} />);
 
-  const userOneElement = screen.getByText(`${userOneFirstName}`);
-  const userTwoElement = screen.getByText(`${userTwoFirstName}`);
+    const userOneElement = screen.getByText(`${userOneFirstName}`);
+    const userTwoElement = screen.getByText(`${userTwoFirstName}`);
 
-  expect(userOneElement).toBeInTheDocument();
-  expect(userTwoElement).toBeInTheDocument();
+    expect(userOneElement).toBeInTheDocument();
+    expect(userTwoElement).toBeInTheDocument();
+  });
 });
