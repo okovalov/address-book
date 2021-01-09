@@ -1,4 +1,4 @@
-export const getSafeDateString = (dateToParse, toIso = false) => {
+export const getSafeDateString = (dateToParse) => {
   const dobValue = new Date(dateToParse);
 
   const isDateValid = !Number.isNaN(dobValue.valueOf());
@@ -7,11 +7,5 @@ export const getSafeDateString = (dateToParse, toIso = false) => {
 
   const selectedDate = givenDate || null;
 
-  let selectedDateString = selectedDate ? selectedDate.toDateString() : '';
-
-  if (toIso) {
-    selectedDateString = selectedDate ? selectedDate.toISOString() : '';
-  }
-
-  return selectedDateString;
+  return selectedDate ? selectedDate.toDateString() : '';
 };
